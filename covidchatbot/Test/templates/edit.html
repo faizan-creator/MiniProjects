@@ -1,0 +1,61 @@
+{% extends 'intro.html' %}
+{% block title %}  Edit {% endblock %}
+{% block editactive %} active {% endblock %}
+{% block editcolor %} white {% endblock %}
+{% block editunder %}<b><u>{% endblock %}
+{% block css %}
+    body, html{
+         background-color: yellow;
+         #background-image: url("/Media/Test/Images/skystar3.jpg") ;
+        background-image: url("/Media/Test/Images/cov22.png") ;
+         background-position: center ;
+         background-repeat: no-repeat;
+         height: 101%;
+         #background-size: 1500px 710px;
+        background-size: 100% 100%;
+        }
+    .container{
+        #color : #00ffff ;
+        color : black ;
+    }
+    {% endblock %}
+{% block body %}<b>
+<center>
+         {% for message in messages %}
+   <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" >
+        <strong>Message : </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+         {% endfor %}
+  </center><br>
+<div class="container">
+    <br><br><h1><font color="black"><b>Edit Your Profile</b></font></h1><br>
+<form action="/test/edit/" name='MyForm' method="POST" onsubmit="return validateform()">
+     {% csrf_token %}
+  <div class="form-group">
+    <label for="Name">First Name : </label>
+    <input type="text" class="form-control" id="FName" name="FName" placeholder="Enter your First Name"  value={{user.first_name}} pattern="[A-Z a-z]{1,50}" title="Must contain only alphabets.">
+  </div>
+
+  <div class="form-group">
+    <label for="Name">Last Name : </label>
+    <input type="text" class="form-control" id="LName" name="LName" placeholder="Enter your Last Name "  value={{user.last_name}} pattern="[A-Z a-z]{1,50}" title="Must contain only alphabets.">
+  </div>
+  <div class="form-group">
+    <label for="Name">Email ID : </label>
+    <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter your Email ID " value={{user.email}} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$">
+  </div>
+  <div class="form-group">
+    <label for="Desc">Change Passoword : </label>
+    <div>
+        <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Enter Your New Password." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters">
+        <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Re-Enter Your New Password." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters">
+    </div>
+  </div><br>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+</div></b>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+{% endblock %}

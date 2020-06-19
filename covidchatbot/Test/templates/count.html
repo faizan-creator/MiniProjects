@@ -1,0 +1,26 @@
+{% extends 'intro.html' %}
+{% block title %}  Counting {% endblock %}
+{% block countactive %} active {% endblock %}
+{% block countcolor %} white {% endblock %}
+{% block countunder %} <b><u> {% endblock %}
+{% block css %} body, html{
+         background-color: #bfff00;
+         #background-image: url("/Media/Test/Images/skystar5.jpg") ;
+        background-image: url("/Media/Test/Images/cov16.png") ;
+         background-position: center ;
+            height:102%;
+         background-repeat: no-repeat;
+         #background-size: 1500px 735px;
+        background-size: 100% 100%;
+        }
+    {% endblock %}
+    {% block body %}
+    <font size="6" color="red"><center><b><i><a href="https://www.covid19india.org/"><font color="blue">Click here to see the India Covid Cases</font></a>
+        <br><br><br> <a href="https://www.worldometers.info/coronavirus/"><font color="#00ffff">Click here to see the World wide cases</font></a>
+        <br><br><br> <a href="https://www.mohfw.gov.in/"><font color="#bfff00">Click here to see India Government Guidelines</font></a>
+        <br><br><br> <a href="https://www.who.int/"><font color="yellow">Click here to see the world wide WHO Guidelines</font></a>
+        <br><br><br> <a href="https://www.covidhotspots.in/"><font color="red">Click here to see the Red Zone areas Map</font></a>
+    <br></i></b></center></font>
+
+
+    {% endblock %}

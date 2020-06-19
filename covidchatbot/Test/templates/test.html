@@ -1,0 +1,128 @@
+{% extends 'intro.html' %}
+{% block title %}  Testing {% endblock %}
+{% block testactive %} active {% endblock %}
+{% block testcolor %} white {% endblock %}
+{% block testunder %}<b><u>{% endblock %}
+{% block head %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> {% endblock %}
+{% block css %}
+    {
+ box-sizing: border-box
+ }/* Set height of body and the document to 100% */
+ body, html {
+ height: 100%;
+ margin: 0;
+ font-family: Arial;
+ background-color: red	;
+ background-image: url("/Media/Test/Images/cov10.png");
+ background-size: 100% 100%;
+ }
+ #chatbox {
+ margin-left: auto;
+ margin-right: auto;
+ width: 40%;
+ margin-top: 60px;
+ }
+ #userInput {
+ margin-left: auto;
+ margin-right: auto;
+ width: 40%;
+ margin-top: 60px;
+ }
+ #textInput {
+ width: 90%;
+ border: none;
+ border-bottom: 3px solid black;
+ font-family: monospace;
+ font-size: 17px;
+ background-color: #00ffff;
+ }
+ .userText {
+ color: white;
+ font-family: monospace;
+ font-size: 17px;
+ text-align: right;
+ line-height: 30px;
+ }
+ .userText span {
+ background-color: #808080;
+ padding: 10px;
+ border-radius: 2px;
+ }
+ .botText {
+ color: white;
+ font-family: monospace;
+ font-size: 17px;
+ text-align: left;
+ line-height: 30px;
+ }
+ .botText span {
+ background-color: #4169e1;
+ padding: 10px;
+ border-radius: 2px;
+ }
+ #tidbit {
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ width: 300px;
+ }
+ .boxed {
+  margin-left: auto;
+ margin-right: auto;
+ width: 78%;
+ margin-top: 60px;
+ border: 1px solid green;
+ background-color: yellow;
+ background-image: url("/Media/Test/Images/cov12.PNG");
+ background-size: 100% 400px ;
+ }
+
+    {% endblock %}
+{% block body %}
+
+    <div>
+ <h1 align="center"><br><b>Welcome to Covid Symptoms Assessment Test ChatBot</b></h1>
+ <p align="center"><img src="https://raw.githubusercontent.com/patelkelvin/Python-BOT/master/templates/favicon.ico" alt="Python-BOT" height="210" width="220"></p>
+ <div class="boxed">
+ <div>
+ <div id="chatbox">
+ <p class="botText">
+ <span>Hello Dear! I'm your Friend ChatBot</span>
+ </p>
+ </div>
+ <div id="userInput">
+ <input id="textInput" type="text" name="msg" placeholder="Please Enter Here Your Message : " />
+ </div>
+ </div>
+  <br>
+  </div>
+ </div>
+ {% endblock %}
+ {% block js %}
+  function getBotResponse() {
+ var rawText = $("#textInput").val();
+ console.log(rawText)
+ var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+ console.log(userHtml)
+ $("#textInput").val("");
+ $("#chatbox").append(userHtml);
+ document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+
+ $.get("/test/get", { msg: rawText }).done(function (data) {
+console.log()
+ var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+ $("#chatbox").append(botHtml);
+ document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+ }
+ $("#textInput").keypress(function (e) {
+ if (e.which == 13) {
+ getBotResponse();
+ }
+ });
+ {% endblock %}  <!--$("/get", { msg: rawText }).done(function (data) {
+ var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+ $("#chatbox").append(botHtml);
+ document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+  });-->
+
